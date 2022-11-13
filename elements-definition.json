@@ -1,0 +1,177 @@
+[
+    {
+        "tagName": "header",
+        "classes": [],
+        "text": "",
+        "attributes": {},
+        "children": [
+            {
+                "tagName": "div",
+                "classes": [
+                    "header"
+                ],
+                "text": "",
+                "attributes": {},
+                "children": [
+                    {
+                        "tagName": "span",
+                        "classes": [
+                            "book-emoji"
+                        ],
+                        "text": "📖",
+                        "attributes": {},
+                        "children": []
+                    },
+                    {
+                        "tagName": "h1",
+                        "classes": [],
+                        "text": "Magic Book Store",
+                        "attributes": {},
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "tagName": "nav",
+                "classes": [],
+                "text": "",
+                "attributes": {},
+                "children": [
+                    {
+                        "tagName": "a",
+                        "classes": [],
+                        "text": "Book catalog",
+                        "attributes": {
+                            "href": "#bookCatalog"
+                        },
+                        "children": []
+                    },
+                    {
+                        "tagName": "a",
+                        "classes": [],
+                        "text": "Order books",
+                        "attributes": {
+                            "href": "#orderBooks"
+                        },
+                        "children": []
+                    },
+                    {
+                        "tagName": "a",
+                        "classes": [],
+                        "text": "Designed by @ykalenik",
+                        "attributes": {
+                            "href": "https://github.com/ykalenik"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "tagName": "main",
+        "classes": [
+            "main"
+        ],
+        "text": "",
+        "attributes": {},
+        "children": [
+            {
+                "tagName": "section",
+                "classes": [
+                    "book-catalog"
+                ],
+                "text": "",
+                "attributes": {},
+                "children": [
+                    {
+                        "tagName": "h2",
+                        "classes": [],
+                        "text": "Book catalog",
+                        "attributes": {},
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "tagName": "section",
+                "classes": [
+                    "order"
+                ],
+                "text": "",
+                "attributes": {},
+                "children": [
+                    {
+                        "tagName": "h2",
+                        "classes": [],
+                        "text": "Your order",
+                        "attributes": {},
+                        "children": []
+                    },
+                    {
+                        "tagName": "p",
+                        "classes": [],
+                        "text": "Empty",
+                        "attributes": {},
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "tagName": "footer",
+        "classes": [],
+        "text": "",
+        "attributes": {},
+        "children": [
+            {
+                "tagName": "p",
+                "classes": [],
+                "text": "",
+                "attributes": {},
+                "children": [
+                    {
+                        "tagName": "a",
+                        "classes": [
+                            "contact-us-link"
+                        ],
+                        "text": "",
+                        "attributes": {
+                            "href": "mailto:magic.store@example.com"
+                        },
+                        "children": [
+                            {
+                                "tagName": "span",
+                                "classes": [
+                                    "owl"
+                                ],
+                                "text": "🦉",
+                                "attributes": {},
+                                "children": []
+                            },
+                            {
+                                "tagName": "span",
+                                "classes": [
+                                    "question"
+                                ],
+                                "text": "Have a question?",
+                                "attributes": {},
+                                "children": []
+                            },
+                            {
+                                "tagName": "span",
+                                "classes": [
+                                    "contact"
+                                ],
+                                "text": "Contact us!",
+                                "attributes": {},
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

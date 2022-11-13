@@ -1,0 +1,212 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: auto;
+    padding: 0;
+    max-width: 1024px;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: beige;
+}
+
+.book-emoji {
+    margin: 20px 10px 0px 10px;
+    font-size: xx-large;
+}
+
+.header {
+    display: flex;
+    color: black;
+}
+
+.body header nav {
+    display: flex;
+    margin-left: auto;
+    gap: 20px;
+
+}
+
+.body header nav a {
+    color: black;
+    text-decoration-style: dotted;
+}
+
+.body header nav a:hover {
+    color: grey;
+}
+
+.main {
+    display: flex;
+    flex: 1;
+    background: linear-gradient(315.75deg, rgba(254, 210, 144, 0.7) 30.06%, #FEBDAB 100.95%, rgba(254, 210, 144, 0.7) 106.36%),
+        linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
+        linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+}
+
+.order {
+    background-color: rgba(255, 255, 255, 0.52);
+    width: 30%;
+    height: fit-content;
+    border-radius: 15px;
+    margin: 10px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.order h2 {
+    text-align: center;
+}
+
+.order p {
+    text-align: center;
+}
+
+.book-catalog {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    color: black;
+    width: 70%;
+}
+
+button {
+    cursor: pointer;
+}
+
+.grid-books {
+    display: grid;
+    gap: 10px;
+    border: black solid 1px;
+    border-radius: 10px;
+    padding: 10px;
+    grid-template-areas:
+        "image  title buttons"
+        "image  description description";
+    grid-template-columns: 1fr 2fr 150px;
+    grid-template-rows: min-content 1fr;
+    place-content: center start;
+    margin: 15px 10px;
+}
+
+.grid-image {
+    grid-area: image;
+    align-self: center;
+    width: 160px;
+    height: 250px;
+}
+
+.grid-image:hover {
+    transform: scale(1.2);
+}
+
+.buy-section {
+    grid-area: buttons;
+    align-self: center;
+    justify-self: center;
+}
+
+.buy-section button {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.buy-section button:nth-of-type(1) {
+    background-color: #ABECFE;
+    color: blue;
+}
+
+.buy-section button:nth-of-type(1):hover {
+    background-color: #79E1FD;
+}
+
+.buy-section button:nth-of-type(2) {
+    background-color: #FEE7AB;
+}
+
+.buy-section button:nth-of-type(2):hover {
+    background-color: #FDD979;
+}
+
+.price {
+    font-weight: 700;
+    font-size: large;
+}
+
+.book-title h2,
+h3,
+h4,
+p {
+    margin: 0;
+}
+
+.book-title h3 {
+    font-size: large;
+}
+
+.book-title h4 {
+    font-size: medium;
+    margin-top: 10px;
+}
+
+.buy-section p {
+    text-align: center;
+}
+
+.book-title {
+    grid-area: title;
+}
+
+.description {
+    grid-area: description;
+}
+
+.price {
+    grid-area: price;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: beige;
+}
+
+footer p {
+    margin: 0;
+}
+
+.contact-us-link {
+    display: grid;
+    grid-template-areas: "owl question"
+        "owl contact";
+    width: fit-content;
+}
+
+.owl {
+    grid-area: owl;
+    font-size: x-large;
+    text-align: right;
+    padding-top: 5px;
+}
+
+.question {
+    grid-area: question;
+    text-align: left;
+}
+
+.contact {
+    grid-area: contact;
+    text-align: left;
+}
+
+footer a {
+    text-decoration: none;
+}
