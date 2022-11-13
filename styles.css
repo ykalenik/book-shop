@@ -11,6 +11,7 @@
 header {
     display: flex;
     align-items: center;
+    width: 1024px;
     background-color: beige;
 }
 
@@ -22,6 +23,7 @@ header {
 .header {
     display: flex;
     color: black;
+    height: 80px;
 }
 
 .body header nav {
@@ -29,6 +31,11 @@ header {
     margin-left: auto;
     gap: 20px;
 
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
 }
 
 .body header nav a {
@@ -42,6 +49,7 @@ header {
 
 .main {
     display: flex;
+    margin-top: 80px;
     flex: 1;
     background: linear-gradient(315.75deg, rgba(254, 210, 144, 0.7) 30.06%, #FEBDAB 100.95%, rgba(254, 210, 144, 0.7) 106.36%),
         linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
