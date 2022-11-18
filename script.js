@@ -1,21 +1,29 @@
 import elementsDefinition from './elements-definition.json' assert {type: 'json'};
 import books from './books.json' assert {type: 'json'};
 
-
-
 const body = document.querySelector('body');
 body.classList.add('body');
 body.setAttribute('id', 'body');
-for (let book of books) {
-    const bookDef = createBookElementDefinition(book);
-    elementsDefinition[1].children[0].children.push(bookDef);
+for (const book of books) {
+    const maxDescriptionLength = 150;
+    const bookWithShortDescription = { ...book };
+    bookWithShortDescription.description = bookWithShortDescription.description.substring(0, maxDescriptionLength) + '...';
+    const bookDef = createBookElementDefinition(bookWithShortDescription);
+    elementsDefinition[1].children[0].children.push(bookDef); // Update element definition whith available books
 }
 
 
-for(let elementDef of elementsDefinition) {
+for (let elementDef of elementsDefinition) {
     body.appendChild(createElementWithChildren(elementDef));
 }
 
+// Add Book event listeners
+for (const book of books) {
+    const bookContainerEl = document.querySelector(`div[book-id=${book.id}]`);
+    bookContainerEl.querySelector('.buy-section button:nth-of-type(2)').addEventListener('click', () => showBookDetailsPopup(book));
+}
+
+/// Creates DOM elements based on JSON definition.
 function createElementWithChildren(elementDef) {
     const el = document.createElement(elementDef.tagName);
     if (elementDef.classes.length !== 0) {
@@ -35,14 +43,17 @@ function createElementWithChildren(elementDef) {
     return el;
 }
 
+/// Creates JSON Book element definition based on JSON Book model.
 function createBookElementDefinition(bookModel) {
-    return                     {
+    return {
         "tagName": "div",
         "classes": [
             "grid-books"
         ],
         "text": "",
-        "attributes": {},
+        "attributes": {
+            "book-id": bookModel.id
+        },
         "children": [
             {
                 "tagName": "img",
@@ -150,4 +161,25 @@ function createBookElementDefinition(bookModel) {
             }
         ]
     }
+}
+
+/// Shows Book details as a popup.
+function showBookDetailsPopup(bookDetails) {
+    const popupEl = document.createElement('div');
+    popupEl.classList.add('popup');
+    const popUpMessage = document.createElement('div');
+    popUpMessage.classList.add('popup-message');
+    const popUpheader = document.createElement('h2');
+    const popUpDescription = document.createElement('p');
+    const closeBtn = document.createElement('button');
+    popupEl.appendChild(popUpMessage);
+    popUpMessage.appendChild(popUpheader);
+    popUpMessage.appendChild(popUpDescription);
+    popUpMessage.appendChild(closeBtn);
+    popUpheader.appendChild(document.createTextNode(bookDetails.title));
+    popUpDescription.appendChild(document.createTextNode(bookDetails.description));
+    closeBtn.appendChild(document.createTextNode('Close'));
+    closeBtn.addEventListener('click', () => popupEl.remove());
+
+    document.querySelector('main').appendChild(popupEl);
 }
