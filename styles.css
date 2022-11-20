@@ -72,7 +72,68 @@ header {
 }
 
 .order p {
+    margin: 5px;
     text-align: center;
+    font-size: x-large;
+    font-weight: 700;
+}
+
+.ordered-books {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    margin: 10px;
+    border:2px #FEBDAB solid;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.ordered-books h4 {
+    text-align: center;
+    font-size: large;
+}
+
+.ordered-books p {
+    font-size: large;
+}
+
+.order-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    width: 70px;
+}
+
+
+.ordered-books button {
+    background-color: #FEE7AB;
+    color:black;
+    border: 1px black solid;
+    border-radius: 5px;
+    margin:auto;
+    padding: 5px 8px;
+
+}
+
+.ordered-books button:hover {
+    background-color: #FDD979;
+}
+
+.confirmBtn {
+    display: flex;
+    margin:10px auto;
+    padding:5px 8px;
+    font-size: larger;
+    background-color: #ABECFE;
+    color: blue;
+    border-radius: 5px;
+
+}
+
+.confirmBtn:hover {
+    background-color: #79E1FD;
 }
 
 .book-catalog {
@@ -248,4 +309,9 @@ footer a {
     padding: 5px 10px;
     color:black;
     background-color: #FDD979;
+}
+
+.drag-over {
+    border: #ABECFE solid 2px;
+    box-shadow: rgba(171, 236, 254) 0px 5px 15px;
 }

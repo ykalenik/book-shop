@@ -1,9 +1,11 @@
 import elementsDefinition from './elements-definition.json' assert {type: 'json'};
 import books from './books.json' assert {type: 'json'};
 
-const body = document.querySelector('body');
-body.classList.add('body');
-body.setAttribute('id', 'body');
+let ORDERED_BOOKS = [];
+const BODY = document.querySelector('body');
+
+BODY.classList.add('body');
+BODY.setAttribute('id', 'body');
 for (const book of books) {
     const maxDescriptionLength = 150;
     const bookWithShortDescription = { ...book };
@@ -14,14 +16,21 @@ for (const book of books) {
 
 
 for (let elementDef of elementsDefinition) {
-    body.appendChild(createElementWithChildren(elementDef));
+    BODY.appendChild(createElementWithChildren(elementDef));
 }
 
 // Add Book event listeners
 for (const book of books) {
     const bookContainerEl = document.querySelector(`div[book-id=${book.id}]`);
+    bookContainerEl.querySelector('.buy-section button:nth-of-type(1)').addEventListener('click', () => addBookToCart(book));
     bookContainerEl.querySelector('.buy-section button:nth-of-type(2)').addEventListener('click', () => showBookDetailsPopup(book));
+    bookContainerEl.addEventListener('dragstart', (e) => {
+        console.log('drag start!');
+        e.dataTransfer.setData("text/plain", JSON.stringify(book));
+    });
 }
+addOrderSectionEventHandlers();
+
 
 /// Creates DOM elements based on JSON definition.
 function createElementWithChildren(elementDef) {
@@ -52,7 +61,8 @@ function createBookElementDefinition(bookModel) {
         ],
         "text": "",
         "attributes": {
-            "book-id": bookModel.id
+            "book-id": bookModel.id,
+            "draggable": true
         },
         "children": [
             {
@@ -182,4 +192,98 @@ function showBookDetailsPopup(bookDetails) {
     closeBtn.addEventListener('click', () => popupEl.remove());
 
     document.querySelector('main').appendChild(popupEl);
+}
+
+function addBookToCart(bookDetails) {
+    if (!ORDERED_BOOKS.some((book) => book.id === bookDetails.id)) {
+        ORDERED_BOOKS.push(bookDetails);
+    } else {
+        alert("You've already added this book to cart!");
+    }
+    showOrderedBooks(ORDERED_BOOKS);
+}
+
+function showOrderedBooks(books) {
+    const orderSection = document.querySelector('.order');
+    orderSection.remove();
+
+    const newOrderSection = document.createElement('section');
+    newOrderSection.classList.add('order');
+    const newOrderSectionElements = new DocumentFragment();
+    const orderSectionHeader = document.createElement('h2');
+    orderSectionHeader.appendChild(document.createTextNode('Your order'));
+    newOrderSectionElements.appendChild(orderSectionHeader);
+    if (books.length === 0) {
+        const orderBooksMessageEl = document.createElement('p');
+        orderBooksMessageEl.appendChild(document.createTextNode('Please select a book on the left'));
+        newOrderSectionElements.appendChild(orderBooksMessageEl);
+    } else {
+        let totalSum = 0;
+        for (const book of books) {
+            newOrderSectionElements.appendChild(createOrderedBookElement(book));
+            totalSum += book.price;
+        }
+        const total = document.createElement('p');
+        total.appendChild(document.createTextNode(`Total: $${totalSum}`));
+        newOrderSectionElements.appendChild(total);
+        const submitBtn = document.createElement('button');
+        submitBtn.classList.add('confirmBtn');
+        submitBtn.appendChild(document.createTextNode('📚 Confirm order'));
+        newOrderSectionElements.appendChild(submitBtn);
+    }
+    newOrderSection.appendChild(newOrderSectionElements);
+    document.querySelector('main').appendChild(newOrderSection);
+    addOrderSectionEventHandlers();
+}
+
+function createOrderedBookElement(book) {
+    const orderedBooksBox = document.createElement('div');
+    orderedBooksBox.classList.add('ordered-books');
+    const orderedAuthor = document.createElement('p');
+    orderedAuthor.appendChild(document.createTextNode(book.author));
+    orderedBooksBox.appendChild(orderedAuthor);
+    const orderedTitle = document.createElement('h4');
+    orderedTitle.appendChild(document.createTextNode(book.title));
+    orderedBooksBox.appendChild(orderedTitle);
+    const orderedPrice = document.createElement('p');
+    orderedPrice.appendChild(document.createTextNode('$' + book.price));
+    orderedBooksBox.appendChild(orderedPrice);
+    const orderedImage = document.createElement('img');
+    orderedImage.setAttribute('src', book.imageLink);
+    orderedImage.setAttribute('alt', book.title);
+    orderedImage.classList.add('order-image');
+    orderedBooksBox.appendChild(orderedImage);
+    const deleteBtn = document.createElement('button');
+    deleteBtn.appendChild(document.createTextNode("🗑️ Delete"));
+    deleteBtn.addEventListener('click', () => {
+        orderedBooksBox.remove();
+        ORDERED_BOOKS = ORDERED_BOOKS.filter((orderedBook) => orderedBook.id !== book.id);
+        showOrderedBooks(ORDERED_BOOKS);
+    });
+    orderedBooksBox.appendChild(deleteBtn);
+    return orderedBooksBox;
+}
+
+function addOrderSectionEventHandlers() {
+    const orderSection = document.querySelector('.order');
+    orderSection.addEventListener('drop', (e) => {
+        console.log('drop!');
+        e.stopPropagation(); // Stops some browsers from redirecting.
+        e.preventDefault();
+        const data = e.dataTransfer.getData("text");
+        console.log('data', data);
+        const bookDetails = JSON.parse(data);
+        addBookToCart(bookDetails);
+    });
+    orderSection.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        orderSection.classList.add('drag-over');
+    });
+    orderSection.addEventListener('dragenter', (e) => {
+        e.preventDefault();
+        orderSection.classList.add('drag-over');
+    });
+    orderSection.addEventListener('dragleave', (e) => {
+        orderSection.classList.remove('drag-over');
+    });
 }
