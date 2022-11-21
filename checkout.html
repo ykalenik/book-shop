@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Book Store - Checkout</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./checkout.css">
+    <link rel="stylesheet" href="./normalize.css">
+</head>
+
+<body class="body">
+    <header>
+        <div class="header">
+            <span class="book-emoji">📖</span>
+            <h1><a href="/index.html" class="titleName">Magic Book Store</a></h1>
+        </div>
+    </header>
+    <main class="main">
+        <div class="order-wrapper">
+            <form class="checkout-form">
+                <h2>Your Contanct Information</h2>
+
+                <label for="firstname">Firstname: </label>
+                <input type="text" id="firstname" name="firstname" aria-label="firstname" pattern="[a-zA-Z]+"
+                    minlength="4" required>
+                <span class="firstname-validation-erros red-message"></span><br>
+
+                <label for="surname">Surname: </label>
+                <input type="text" id="surname" name="surname" aria-label="surname" pattern="[a-zA-Z]+" minlength="5"
+                    required>
+                <span class="surnamename-validation-erros red-message"></span><br>
+
+                <label for="delivery-date">Delivery date:</label>
+                <input type="date" id="delivery-date" name="delivery-date" value="2022-07-22" min="2022-07-22"
+                    aria-label="delivery-date" /><br>
+
+                <label for="street">Street: </label>
+                <input type="text" id="street" name="street" aria-label="street" pattern="[a-zA-Z 0-9]+" minlength="5"
+                    required>
+                <span class="street-validation-erros red-message"></span><br>
+
+                <label for="house-number">House number: </label>
+                <input type="text" id="house-number" name="house-number" aria-label="house-number" pattern="(\d+)"
+                    required>
+                <span class="house-validation-erros red-message"></span><br>
+
+                <label for="flat-number">Flat number: </label>
+                <input type="text" id="flat-number" name="flat-number" aria-label="flat-number"
+                    pattern="^(?!0)([0-9]+)-?(?!0)([0-9]+)" required>
+                <span class="flat-validation-erros red-message"></span><br>
+                <div class="row">
+                    <div class="payment">
+                        <p>Type of payment</p>
+                        <input type="radio" id="card-payment" name="payment" aria-label="card-payment" checked>
+                        <label for="card-payment">Card</label><br>
+                        <input type="radio" id="cash-payment" name="payment" aria-label="cash-payment">
+                        <label for="cash-payment">Cash</label>
+                    </div>
+                    <div class="gifts-section" required>
+                        <p>Choose 2 gifts (optional)</p>
+                        <span class="gift-validation-error red-message "></span>
+                        <div>
+                            <input type="checkbox" id="pack" name="pack">
+                            <label for="pack">Pack as a gift</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="postcard" name="postcard">
+                            <label for="postcard">Add postcard</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="discount" name="discount">
+                            <label for="discount">Provide 2% discount to the next time</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="branded-gift" name="branded-gift">
+                            <label for="branded-gift">Branded pen or pencil</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="purchase-btn" disabled>Confirm Order</button>
+            </form>
+            <img class="order-image" src="./img/magic-book.jpg" alt="Magic book">
+        </div>
+    </main>
+</body>
+<script type="module" src="checkout.js"></script>
+
+</html>

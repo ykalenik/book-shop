@@ -1,7 +1,9 @@
 import elementsDefinition from './elements-definition.json' assert {type: 'json'};
 import books from './books.json' assert {type: 'json'};
 
-let ORDERED_BOOKS = [];
+
+const PREVOUSLY_ORDERED_BOOKS = sessionStorage.getItem('orderedBooks');
+let ORDERED_BOOKS = (PREVOUSLY_ORDERED_BOOKS) ? JSON.parse(PREVOUSLY_ORDERED_BOOKS) : [];
 const BODY = document.querySelector('body');
 
 BODY.classList.add('body');
@@ -31,6 +33,7 @@ for (const book of books) {
 }
 addOrderSectionEventHandlers();
 
+if (PREVOUSLY_ORDERED_BOOKS) showOrderedBooks(ORDERED_BOOKS);
 
 /// Creates DOM elements based on JSON definition.
 function createElementWithChildren(elementDef) {
@@ -229,6 +232,10 @@ function showOrderedBooks(books) {
         const submitBtn = document.createElement('button');
         submitBtn.classList.add('confirmBtn');
         submitBtn.appendChild(document.createTextNode('📚 Confirm order'));
+        submitBtn.addEventListener('click', () => {
+            sessionStorage.setItem("orderedBooks", JSON.stringify(ORDERED_BOOKS));
+            window.location.href = window.location.origin + '/checkout.html';
+        });
         newOrderSectionElements.appendChild(submitBtn);
     }
     newOrderSection.appendChild(newOrderSectionElements);
