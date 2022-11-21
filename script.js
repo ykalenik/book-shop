@@ -234,7 +234,9 @@ function showOrderedBooks(books) {
         submitBtn.appendChild(document.createTextNode('📚 Confirm order'));
         submitBtn.addEventListener('click', () => {
             sessionStorage.setItem("orderedBooks", JSON.stringify(ORDERED_BOOKS));
-            window.location.href = window.location.origin + '/checkout.html';
+            const link = document.createElement('a');
+            link.setAttribute('href', '/checkout.html');
+            link.click();
         });
         newOrderSectionElements.appendChild(submitBtn);
     }
