@@ -272,6 +272,7 @@ function createOrderedBookElement(book) {
     deleteBtn.addEventListener('click', () => {
         orderedBooksBox.remove();
         ORDERED_BOOKS = ORDERED_BOOKS.filter((orderedBook) => orderedBook.id !== book.id);
+        sessionStorage.setItem("orderedBooks", JSON.stringify(ORDERED_BOOKS));
         showOrderedBooks(ORDERED_BOOKS);
     });
     orderedBooksBox.appendChild(deleteBtn);
