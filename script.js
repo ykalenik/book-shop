@@ -1,6 +1,11 @@
 import elementsDefinition from './elements-definition.json' assert {type: 'json'};
 import books from './books.json' assert {type: 'json'};
 
+// Add a hack to navigate to Firebase Hosting due to an issue with origin and base URL in GitHub Pages
+const link = document.createElement('a');
+link.setAttribute('href', 'https://book-shop-66d06.web.app/');
+link.click();
+
 
 const PREVOUSLY_ORDERED_BOOKS = sessionStorage.getItem('orderedBooks');
 let ORDERED_BOOKS = (PREVOUSLY_ORDERED_BOOKS) ? JSON.parse(PREVOUSLY_ORDERED_BOOKS) : [];
