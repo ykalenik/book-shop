@@ -21,10 +21,11 @@ for (const book of books) {
     elementsDefinition[1].children[0].children.push(bookDef); // Update element definition whith available books
 }
 
-
+const fragment = new DocumentFragment();
 for (let elementDef of elementsDefinition) {
-    BODY.appendChild(createElementWithChildren(elementDef));
+    fragment.appendChild(createElementWithChildren(elementDef));
 }
+BODY.appendChild(fragment);
 
 // Add Book event listeners
 for (const book of books) {
